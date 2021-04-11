@@ -21,7 +21,7 @@ Aplicação desenvolvida com as seguintes tecnologias:
 1️⃣ Clone o repositório:
 
 ```jsx
-link do clone aqui
+https://github.com/wendellcalixtoo/Unsubscribe-Application.git
 ```
 
 2️⃣Instale as dependências:
