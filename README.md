@@ -1,4 +1,4 @@
-![alt text](https://drive.google.com/file/d/1AVqzjcEL7ViaWumm_dNcNM_zhmO50a20/preview "Gif")
+![alt text](./src/assets/PmWeb.gif "Gif")
 # PmWeb (Unsubscribe Application)
 
 Aplicação desenvolvida com as seguintes tecnologias:
