@@ -19,7 +19,7 @@
           <good-bye-card exist-img="false" style="margin-top: 30px" />
         </div>
         <div class="col-6 q-pa-xl justify-center">
-          <select-unsubscribe-option />
+          <select-unsubscribe-option :myJustifications="sendJustificationData" />
         </div>
       </div>
     </q-card>
@@ -44,8 +44,16 @@ export default {
   mixins: [Notify],
   data() {
     return {
-      justificationValue: ""
+      justificationValue: "",
+      sendJustificationData: []
     };
+  },
+    created() {
+   const justificationData = localStorage.getItem("justificationsData")
+
+   if (justificationData) {
+     this.sendJustificationData = JSON.parse(justificationData)
+   }
   },
   methods: {
     saveJustificationOnLocalStorage() {
@@ -55,8 +63,10 @@ export default {
         // update my justifications on localStorage
         justifications = JSON.parse(justifications);
         justifications.push(this.justificationValue);
+        this.sendJustificationData.push(this.justificationValue)
       } else {
         justifications = [this.justificationValue];
+        this.sendJustificationData = [this.justificationValue]
       }
 
       // update localStorage
@@ -64,8 +74,6 @@ export default {
         "justificationsData",
         JSON.stringify(justifications)
       );
-
-      // let count = JSON.parse(localStorage.getItem("justificationsData"));
 
       this.successNotify("Nova justificativa adicionada com sucesso!");
       this.justificationValue = "";

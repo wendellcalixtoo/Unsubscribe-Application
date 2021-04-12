@@ -25,13 +25,18 @@ Aplicação desenvolvida com as seguintes tecnologias:
 https://github.com/wendellcalixtoo/Unsubscribe-Application.git
 ```
 
-2️⃣Instale as dependências:
+2️⃣ Instale as dependências:
 
 ```jsx
 npm install
 ```
+2️⃣.1 Caso necessário instalar CLI Global:
 
-3️⃣Rode a aplicação:
+```jsx
+npm install -g @quasar/cli
+```
+
+3️⃣ Rode a aplicação:
 
 ```jsx
 quasar dev

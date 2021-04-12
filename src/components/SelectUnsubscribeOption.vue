@@ -5,7 +5,7 @@
     >
     <q-card-section class="q-pl-xs q-pt-none">
       <div
-        v-for="(justificationsOption, idx) in justificationsOptions"
+        v-for="(justificationsOption, idx) in myJustifications"
         :key="idx"
       >
         <q-item class="q-pl-none q-py-none" tag="label" v-ripple>
@@ -17,17 +17,20 @@
             />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ justificationsOption }}</q-item-label>
+            <q-item-label class="ellipsis" >{{ justificationsOption }}</q-item-label>
           </q-item-section>
         </q-item>
       </div>
       <q-input
-        class="q-pl-sm"
+        class="q-pl-sm q-pb-none"
         type="text"
         placeholder="Não gostei do layout."
+        maxlength="150"
+        v-model="othersField"
+        :rules="[val => val.length <= 149 || 'Limite de caracteres excedido']"
       />
       <div class="q-mt-xs" style="text-align: right; color: #7f7f7f">
-        0/150 caracteres
+        {{ othersField.length }}/150 caracteres
       </div>
     </q-card-section>
     <q-card-section class="paragraph-style">
@@ -37,30 +40,30 @@
       </div>
     </q-card-section>
     <q-card-section>
-      <q-btn color="primary" rounded no-caps label="Descadastrar" />
+      <q-btn color="primary" rounded no-caps label="Descadastrar" @click="resetLocalStorage" />
     </q-card-section>
   </q-card>
 </template>
 <script>
+
+import Notify from "../mixins/notify";
+
 export default {
   name: "SelectUnsubscribeOption",
+    mixins: [Notify],
+  props: ["myJustifications"],
   data() {
     return {
-      justificationsOptions: [],
-      color: true
+      color: true,
+      othersField:""
     };
   },
-  // watch: {
-  //   justificationsOptions(newValue) {
-  //     console.log("newValue", newValue);
-  //     console.log("oldValue", oldValue);
-  //   }
-  // },
-  created() {
-    this.justificationsOptions = JSON.parse(
-      localStorage.getItem("justificationsData")
-    );
-    // console.log("this.justificationsOptions", this.justificationsOptions);
+  methods: {
+    resetLocalStorage(){
+      window.localStorage.clear()
+
+      this.successNotify("Justificativa enviada!"); 
+    }
   }
 };
 </script>
